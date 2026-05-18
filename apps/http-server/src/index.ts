@@ -92,7 +92,7 @@ app.get('/claimed-blocks', async (req, res) => {
         })
 
         res.json({
-            blocks: blocks.map(b => ({
+            blocks: blocks.map((b: any) => ({
                 blockId: b.id,
                 x: b.x,
                 y: b.y,
