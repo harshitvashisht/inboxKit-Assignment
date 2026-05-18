@@ -4,10 +4,12 @@ import bcrypt from 'bcrypt'
 import { JWT_SECRET } from '@repo/backend-common/config'
 import jwt from "jsonwebtoken"
 import { COLOURS } from './colour'
+import cors from 'cors'
 
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 
 app.post('/signup' , async function(req ,res){
@@ -68,7 +70,8 @@ app.post('/signin' , async function(req ,res){
         message :"user Signed In" ,
         token,
         username : user.username,
-        colour : user.colour
+        colour : user.colour,
+        userId : user.id
       })
 
 
@@ -76,4 +79,30 @@ app.post('/signin' , async function(req ,res){
 
 app.listen(3001, () => {
   console.log('Server running at http://localhost:3001')
+})
+
+
+app.get('/claimed-blocks', async (req, res) => {
+    try {
+        const blocks = await prismaClient.block.findMany({
+            where: { ownerId: { not: null } },
+            include: {
+                owner: { select: { username: true, colour: true } }
+            }
+        })
+
+        res.json({
+            blocks: blocks.map(b => ({
+                blockId: b.id,
+                x: b.x,
+                y: b.y,
+                ownerId: b.ownerId as string,
+                username: b.owner?.username ?? 'Unknown',
+                colour: b.owner?.colour ?? '#000000',
+                claimedAt: b.claimedAt
+            }))
+        })
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' })
+    }
 })

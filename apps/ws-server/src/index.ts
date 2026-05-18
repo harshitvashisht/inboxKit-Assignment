@@ -107,9 +107,11 @@ wss.on('connection' ,(ws ,req)=>{
                             claimedAt: block.claimedAt
                         })
 
+                       let sentCount = 0
                         wss.clients.forEach((clientWs) => {
                             if (clientWs.readyState === WebSocket.OPEN) {
                                 clientWs.send(payload)
+                                sentCount++
                             }
                         })
                         break

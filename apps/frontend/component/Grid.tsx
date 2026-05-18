@@ -1,10 +1,10 @@
-// components/Grid.tsx
+
 'use client'
 
-const COLS = 40
-const ROWS = 25
+const COLS = 10
+const ROWS = 20
 
-type Block = {
+ export type Block = {
   x: number
   y: number
   ownerId: string | null
@@ -39,10 +39,10 @@ export default function Grid({ blocks, currentUserId, onClaim }: Props) {
           const isClaimed = !!block?.ownerId
 
           const bg = !isClaimed
-            ? '#7DD3FC'                          // unclaimed — sky blue
+            ? '#7DD3FC'                       
             : isMine
-            ? block?.owner?.colour ?? '#A78BFA'  // yours
-            : block?.owner?.colour ?? '#FB923C'  // others
+            ? block?.owner?.colour ?? '#A78BFA'  
+            : block?.owner?.colour ?? '#FB923C'  
 
           return (
             <div
