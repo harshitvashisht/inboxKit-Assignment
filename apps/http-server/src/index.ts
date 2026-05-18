@@ -38,6 +38,7 @@ app.post('/signup' , async function(req ,res){
              newuser
            })
            } catch (error) {
+            console.error('Signup error:', error)
              return res.status(500).json({
             message: "Server Error"
           });
