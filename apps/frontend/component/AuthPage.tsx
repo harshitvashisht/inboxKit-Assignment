@@ -27,7 +27,7 @@ export default function AuthPage({type}: AuthPageProps){
            const password = passwordRef.current?.value || "";
            const username = usernameRef.current?.value || ""
            setLoader(true)
-           const response = await axios.post('http://localhost:3001/signup' ,{
+           const response = await axios.post(`${process.env.NEXT_PUBLIC_HTTP_URL}/api/signin` ,{
                      password,
                      username
            }
@@ -42,7 +42,7 @@ export default function AuthPage({type}: AuthPageProps){
            const username = usernameRef.current?.value || "";
            const password = passwordRef.current?.value  || "";
 
-           const response = await axios.post('http://localhost:3001/signin',{
+           const response = await axios.post(`${process.env.NEXT_PUBLIC_HTTP_URL}/api/signup`,{
                  username,
                  password,
            })
