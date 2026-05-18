@@ -49,7 +49,7 @@ wss.on('connection' ,(ws ,req)=>{
                         )
                         ws.send(JSON.stringify({
                             type : 'board-state',
-                            blocks: blocks.map(b=>({
+                            blocks: blocks.map((b: any) => ({
                                 blockId: b.id,
                                 x: b.x,
                                 y: b.y,
