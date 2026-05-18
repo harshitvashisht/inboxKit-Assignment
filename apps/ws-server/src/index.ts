@@ -1,7 +1,7 @@
 import { WebSocket, WebSocketServer } from "ws";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import jwt, { decode } from 'jsonwebtoken'
-import { prismaClient } from "@repo/db/client";
+import { prismaClient } from '@repo/db/client'
 
 
 
