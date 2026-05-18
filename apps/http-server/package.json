@@ -13,10 +13,17 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@repo/backend-common": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0"
   }
 }

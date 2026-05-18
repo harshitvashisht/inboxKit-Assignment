@@ -13,7 +13,22 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
-  username  String   @unique
+  username  String   @unique 
   password  String
+  colour  String 
   createdAt DateTime @default(now())
+
+  blocks Block[]
+
+}
+model Block {
+  id        String   @id @default(uuid())
+  x         Int
+  y         Int
+  ownerId   String?
+  owner     User? @relation(fields: [ownerId], references: [id])
+
+  claimedAt DateTime?
+
+  @@unique([x, y])
 }
